@@ -1,0 +1,30 @@
+<div class="container">
+  
+    <h3>ルーム予約</h3>
+    <div class= "row">
+      <div class= "col-8">
+        <%= image_tag @room.image, class: 'room-show-image' %> 
+        <div class= "room-show-detail">
+          <!--アイコン入れる-->
+          <div class= "room-show-profile">
+            <hr>
+            <p>エリア：<%= @room.room_area %></p>
+            <hr>
+            <p>詳細：<%= @room.room_introduction %></p>
+          </div>
+        </div>
+      </div>  
+      
+      <div class= "col-4">
+        <div class= "room-show-nav">
+          <div class= "room-show-date-select"></div>
+          <hr>
+          <h4><%= @room.id %></h4>
+          <h4>お部屋名：<%= @room.room_name %></h4>
+          <hr>
+          <h4>料金：<%= @room.room_price %>円/１泊</h4>
+          <hr>
+        </div>  
+      </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <p class= "notice"><%= flash.notice %></p>
+  <div class="row">
+    <div class = "col-5">
+      <h3>アカウント</h3>
+        
+        <hr>
+        <h4>メールアドレス：<%= current_user.email %></h4>
+        <hr>
+        <h4>パスワード：******</h4>
+        <hr>
+        <button type="submit"><%= link_to "編集", edit_user_registration_path(current_user) %></button>
+    </div>
+    
+    <div class = "col-7">
+      <h3>プロフィール</h3>
+        <hr>
+        <%= image_tag current_user.icon, class: 'profile-icon' %>
+        <hr>
+        <h4>名前：<%= current_user.user_name %></h4>
+        <hr>
+        <h4>自己紹介：<%= current_user.introduction %></h4>
+        <hr>
+        <button type="submit"><%= link_to "編集", edit_user_path(current_user) %></button>  
+    </div>    
+  </div>    
+</div> 

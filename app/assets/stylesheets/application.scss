@@ -1,0 +1,68 @@
+@import "bootstrap";
+
+header , footer {
+    width: 100%;
+    padding: 10px;
+    background: #db7093;
+    color: #fff;
+    margin: 0px;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+footer {
+  margin-top: 50px;
+}
+
+.container {
+    max-width: 1140px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+// home/top画面
+.panel-image {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+// room/index イメージ画像
+// entry イメージ画像
+.room-posts-image {
+    width: 240px;
+    height: 140px;
+    object-fit: cover;
+}
+
+// room/index 囲い
+.room-frame-inner {
+    border: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+}
+
+
+
+// entry
+.room-posts table {
+    min-width: 800px;
+}
+
+.room-posts table thead tr {
+    border-top: 1px solid #eaedef;
+    border-bottom: 1px solid #eaedef;
+}
+
+.room-posts table tbody tr{
+    border-bottom: 1px solid #eaedef;
+}
