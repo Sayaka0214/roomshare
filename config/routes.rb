@@ -1,13 +1,28 @@
 Rails.application.routes.draw do
   
-  # room controller 作成時に自動反映↓
-  # get 'rooms/index'
-
+  # 自動反映
+  # get 'reservations/index'
   get 'home/top'
   
-  resources:rooms 
+  # うまくいけばconfirm complete backは消す
+  resources:rooms do
+    member do
+      post 'confirm'
+      post 'complete'
+      post 'back'
+    end
+  end 
   
   resources:accounts
+  
+  resources:reservations do
+    member do
+      post 'confirm'
+      post 'complete'
+      post 'back'
+    end
+  end 
+  
   
 # deviseのルーティング変更のためコントローラー作成
   devise_for :users, :controllers => {

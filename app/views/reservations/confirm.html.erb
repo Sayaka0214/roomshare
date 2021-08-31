@@ -1,0 +1,41 @@
+<div class="container">
+    <h3>予約内容確認</h3>
+      <h4>この内容で予約してよろしいですか？</h4>
+      <hr>
+      <dl>
+      <dt>ルーム名</dt>
+      <dd><%= @room.room_name %></dd>
+      <dt>チェックイン</dt>
+      <dd><%= @reservation.check_in %></dd>
+      <dt>チェックアウト</dt>
+      <dd><%= @reservation.check_out %></dd>
+      <dt>ご人数</dt>
+      <dd><%= @reservation.people %>人</dd>
+      <dt>ご宿泊日数</dt>
+      <dd><%= @reservation.nigtht %>泊</dd>
+      <dt>合計</dt>
+      <dd><%= @reservation.total %>円</dd>
+      </dl>
+      <hr>
+
+  <%= form_for @reservation, method: :post, url: back_room_path do |form| %>
+    <%= form.hidden_field :check_in %>
+    <%= form.hidden_field :check_out %>
+    <%= form.hidden_field :people %>
+    <%= form.hidden_field :nigtht %>
+    <%= form.hidden_field :total %>
+    <%= form.hidden_field :room_id %>
+  	<%= form.submit '入力画面に戻る' %>
+  <% end %>
+  
+  <%= form_for(@reservation, url:{controller:'reservations', action:'create'}) do |form| %>
+    <%= form.hidden_field :check_in %>
+    <%= form.hidden_field :check_out %>
+    <%= form.hidden_field :people %>
+    <%= form.hidden_field :nigtht %>
+    <%= form.hidden_field :total %>
+    <%= form.hidden_field :room_id %>
+  	<%= form.submit '送信する' %>
+  <% end %>
+  
+</div>

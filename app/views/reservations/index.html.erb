@@ -1,0 +1,45 @@
+<div class="col-12">
+  <div class="container container-fiuld room-posts">
+  <p class= "notice"><%= flash.notice %></p>  
+  <h4>予約済みお部屋一覧</h4>
+    <table>
+      <thead>
+        <tr align="center">
+          <th>rsv id</th>
+          <th>user id</th>
+          <th>人数</th>
+          <th>チェックイン日</th>
+          <th>チェックアウト日</th>
+          <th>予約完了日</th>
+          <th>ルームid</th>
+          <th>お部屋イメージ</th>
+          <th>お部屋名</th>
+          <th>お部屋紹介</th>
+          <th>料金</th>
+        </tr>
+      </thead>
+      <tbody> 
+      <p>あなた：<%= @user.user_name %></p>
+        <% @reservations.each do |reservation| %>
+        
+        <tr align="center">
+          <td><%= reservation.id %>
+          <td><%= reservation.user_id %>
+          <td><%= reservation.people %>
+          <td><%= reservation.check_in %>
+          <td><%= reservation.check_out %>
+          <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
+        <!--< end %> -->
+        <!--< @rooms.each do |reservation| %>-->
+          <!--<td><= image_tag reservation.room.image, class: 'room-posts-image' %></td>-->
+          
+          <!--<td><= reservation.room_id %></td>-->
+          <!--<td><= reservation.introduction %></td>-->
+          <!--<td><= reservation.room.room_price %></td>-->
+        </tr>  
+        <% end %>
+      </tbody>
+    <table>
+  </div>
+</div>  
+        

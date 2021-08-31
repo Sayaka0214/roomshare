@@ -5,8 +5,10 @@
       <div class= "col-8">
         <%= image_tag @room.image, class: 'room-show-image' %> 
         <div class= "room-show-detail">
-          <!--アイコン入れる-->
           <div class= "room-show-profile">
+            <hr>
+            <p>ホストユーザーid: <%= @room.user.id %></p>
+            <p>ホスト：<%= @room.user.user_name %></p>
             <hr>
             <p>エリア：<%= @room.room_area %></p>
             <hr>
@@ -19,12 +21,39 @@
         <div class= "room-show-nav">
           <div class= "room-show-date-select"></div>
           <hr>
-          <h4><%= @room.id %></h4>
+          <p>あなた：<%= current_user.user_name %></p>
+          <p>あなた：<%= current_user.id %></p>
+          <hr>
+          <h4>ルームid:<%= @room.id %></h4>
           <h4>お部屋名：<%= @room.room_name %></h4>
           <hr>
           <h4>料金：<%= @room.room_price %>円/１泊</h4>
           <hr>
+          <hr>
+            <%= form_for @reservation, method: :post, url: confirm_reservation_path do |f| %>
+              <div class"form-group">
+                <label>開始日</label>
+                  <%= f.date_field:check_in, class: "form-control" %>
+              </div>
+              <div class"form-group">
+                <label>終了日</label>
+                  <%= f.date_field:check_out, class: "form-control" %>
+              </div>
+              <div class"form-group">
+              <label>人数</label>
+                <%= f.text_field:people, class: "form-control" %>
+              </div>
+              
+              <%= f.hidden_field:user_id, value: current_user.id %>
+              <%= f.hidden_field:room_id, value: @room.id %>
+              
+              <div class"form-group">
+                <%= f.submit "確認画面へ", class: "btn btn-primary" %>
+              </div>
+            <% end %>
         </div>  
       </div>
+      
 
 </div>
+

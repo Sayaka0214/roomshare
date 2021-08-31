@@ -1,0 +1,13 @@
+<div class="container">
+  <h2 class="mt-4">予約した部屋</h2>
+  <dl>
+    <dt>予約した部屋</dt>
+    <dd><%= @room.room_name %></dd>
+    <dt>開始日</dt>
+    <dd><%= @reservation.check_in %></dd>
+    <dt>終了日</dt>
+    <dd><%= @reservation.check_out %></dd>
+    <dt>価格</dt>
+    <dd><%= @reservation.total %>円</dd>
+  </dl>
+</div>
