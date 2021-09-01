@@ -1,21 +1,9 @@
 class ReservationsController < ApplicationController
   
-  
   def index
     @user = current_user
     @reservations = @user.reservations
   end
-  
-  # def confirm
-  #   @room = Room.find(params[:id])
-  #     # @roomはルームidの今選択した１つのお部屋情報(room_name intro,price,add,area,image,user_idなど)が入る
-  #   @reservation = Reservation.new(reservation_params)
-  #     # @reservationはuser_id ck_in ck_out people room_idが入ってる
-  #   @reservation.room = @room
-  #     #@reservation.roomに↑の@roomの情報が代入された(これは不要かも)
-  #   @reservation.nigtht = @reservation.check_out - @reservation.check_in
-  #   @reservation.total = @room.room_price * (@reservation.check_out - @reservation.check_in)
-  # end
   
   def confirm
     @reservation = current_user.reservations.new(
@@ -24,35 +12,43 @@ class ReservationsController < ApplicationController
       people: params[:reservation][:people],
       room_id: params[:room_id]
       )
-    @room = Room.find(params[:id])  
-    session[:reservation] = @reservation 
+      session[:reservation] = @reservation
+    @room = Room.find(params[:id])
     @reservation.nigtht = @reservation.check_out - @reservation.check_in
     @reservation.total = @room.room_price * (@reservation.check_out - @reservation.check_in)
-  end  
+    if @reservation.invalid?
+			redirect_to "/rooms/#{params[:room_id]}"
+		end	
+  end
   
-  def create
-    @room = Room.find(params[:id]) # **取得できない
+ 
+  def back
+    @reservation = @current_user.reservations.new(session[:reservation])
+		session.delete(:reservation)
+		redirect_to "/rentals/#{params[:rental_id]}"
+  end
+  
+  def complete
     @reservation = Reservation.create!(session[:reservation])
-    # @reservation.room_image = @room.image　**取得できない
-    # @reservation.introduction = @room.room_introduction　**取得できない
-    # @reservation.room_id = @room.id　**取得できない
-    if @reservation.save
-      flash[:notice] = "予約完了"
-      redirect_to reservations_path(@reservation.id)
-    else
-      render room_path(@reservation.room.id)
-    end
-  end  
-  
-  
-  private
-  def reservation_params
-    params.require(:reservation).permit(:check_in, :check_out, :people, :user_id, :room_id)
-  end  
+		@room = Room.find(params[:id])
+		@reservation.room_id = @room.id
+		@reservation.room_name = @room.room_name
+		@reservation.total = @room.room_price * (@reservation.check_out - @reservation.check_in)
+		@reservation.room_introduction = @room.room_introduction
+		@reservation.room_image = @room.image
+		
+		if @reservation.save!
+  		flash[:notice] = "お部屋を予約しました"
+  		session.delete(:reservation)
+  		redirect_to reservations_path
+  	else
+  	  redirect_to room_path
+    end 
+  end
   
 end  
 
-  # ひとつ前のページに飛ばしたい時↓
-  # redirect_to :back
+
+  
 
   

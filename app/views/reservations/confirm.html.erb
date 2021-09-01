@@ -1,41 +1,39 @@
 <div class="container">
     <h3>予約内容確認</h3>
-      <h4>この内容で予約してよろしいですか？</h4>
+      <h5>この内容で予約してよろしいですか？</h5>
       <hr>
-      <dl>
-      <dt>ルーム名</dt>
-      <dd><%= @room.room_name %></dd>
-      <dt>チェックイン</dt>
-      <dd><%= @reservation.check_in %></dd>
-      <dt>チェックアウト</dt>
-      <dd><%= @reservation.check_out %></dd>
-      <dt>ご人数</dt>
-      <dd><%= @reservation.people %>人</dd>
-      <dt>ご宿泊日数</dt>
-      <dd><%= @reservation.nigtht %>泊</dd>
-      <dt>合計</dt>
-      <dd><%= @reservation.total %>円</dd>
-      </dl>
-      <hr>
-
-  <%= form_for @reservation, method: :post, url: back_room_path do |form| %>
-    <%= form.hidden_field :check_in %>
-    <%= form.hidden_field :check_out %>
-    <%= form.hidden_field :people %>
-    <%= form.hidden_field :nigtht %>
-    <%= form.hidden_field :total %>
-    <%= form.hidden_field :room_id %>
-  	<%= form.submit '入力画面に戻る' %>
-  <% end %>
-  
-  <%= form_for(@reservation, url:{controller:'reservations', action:'create'}) do |form| %>
-    <%= form.hidden_field :check_in %>
-    <%= form.hidden_field :check_out %>
-    <%= form.hidden_field :people %>
-    <%= form.hidden_field :nigtht %>
-    <%= form.hidden_field :total %>
-    <%= form.hidden_field :room_id %>
-  	<%= form.submit '送信する' %>
-  <% end %>
-  
+      <div class= "row">
+        <div class= "col-6">
+          <dl>
+          <h3><dt><%= @room.room_name %></dt></h3> 
+          <dd><%= image_tag @room.image %></dd>
+        </div>
+        
+        <div class= "col-6">
+          <br>
+          <dt>ルーム紹介</dt>
+          <dd><%= @room.room_introduction %></dd>
+          <dt>チェックイン</dt>
+          <dd><%= @reservation.check_in %></dd>
+          <dt>チェックアウト</dt>
+          <dd><%= @reservation.check_out %></dd>
+          <dt>ご人数</dt>
+          <dd><%= @reservation.people %>人</dd>
+          <dt>ご宿泊日数</dt>
+          <dd><%= @reservation.nigtht %>泊</dd>
+          <dt>合計</dt>
+          <dd><%= @reservation.total %>円</dd>
+          </dl>
+          <br>
+          
+          <%= form_for(@reservation, url:{controller:'reservations', action:'complete'}) do |form| %>
+          	<%= form.submit '予約する', class: "btn btn-primary" %>
+          <% end %>
+          <br>
+          <%= form_for @reservation, method: :post, url: back_room_path do |form| %>
+  	      <%= form.submit '入力画面に戻る', class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>  
 </div>
+

@@ -18,12 +18,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @room = Room.new
-    @rooms = @user.rooms
+    # @rooms = @user.rooms これ要らない記述のはず
   end
   
-  
-  
-  # 登録済みルーム一覧ページ
+ 
+  # ユーザー別登録済みルーム一覧ページ
   def entry
     @user = User.find(params[:id])
     @rooms = @user.rooms

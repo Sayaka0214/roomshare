@@ -3,7 +3,7 @@
 header , footer {
     width: 100%;
     padding: 10px;
-    background: #db7093;
+    background: #d2b48c;
     color: #fff;
     margin: 0px;
 }
@@ -16,6 +16,14 @@ footer {
   margin-top: 50px;
 }
 
+.link_color {
+  color: #696969;
+}
+
+.mb-4 {
+    margin-bottom: .5rem!important;
+}
+
 .container {
     max-width: 1140px;
 }
@@ -26,6 +34,19 @@ footer {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+}
+
+// ログイン/新規会員登録画面
+.field {
+    padding-bottom: .5rem;
+}
+
+.login_sign-up_label {
+    margin: 0;
+}
+
+.actions {
+    margin-top: 1rem;
 }
 
 // home/top画面
@@ -51,8 +72,6 @@ footer {
     margin-bottom: 10px;
 }
 
-
-
 // entry
 .room-posts table {
     min-width: 800px;
@@ -65,4 +84,11 @@ footer {
 
 .room-posts table tbody tr{
     border-bottom: 1px solid #eaedef;
+}
+
+
+// フラッシュメッセージ
+.notice {
+    color: #5f9ea0;
+    padding: 5px;
 }

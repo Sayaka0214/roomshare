@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController  
   
-  # 検索結果
+  # 検索結果　ルーム一覧
   def index
     @search= Room.ransack(params[:q])
     @rooms = @search.result(distinct: true)
@@ -21,13 +21,24 @@ class RoomsController < ApplicationController
     end
   end
   
-   # ルーム削除ボタン
+  def create
+    @room = Room.new(room_params)
+    if @room.save
+      flash[:notice] = "お部屋を登録しました"
+      redirect_to entry_user_path(current_user)
+    else
+      render user_path
+    end
+  end
+
+   # 一覧のルーム削除ボタン
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
     flash[:notice] = "お部屋を削除しました"
     redirect_to rooms_path
   end
+  
   
   def show
     @room = Room.find(params[:id])
@@ -40,8 +51,7 @@ class RoomsController < ApplicationController
   
   
   def room_params
-    params.require(:room).permit(:id, :room_name, :room_introduction, :room_price, :room_area, :room_address, :image, :user_id)
+    params.require(:room).permit(:room_name, :room_introduction, :room_price, :room_area, :room_address, :image)
   end
-  
   
 end 

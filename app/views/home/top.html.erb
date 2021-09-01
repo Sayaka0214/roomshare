@@ -1,19 +1,14 @@
 <div class="container">
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <%= link_to "ログイン", new_user_session_path %>
-　<%= link_to "新規登録", new_user_registration_path %>
-　
-        
     <div class= "col-4">
-      <h4>旅先を検索</h4>
-      <!--<= search_form_for @q, url: rooms_path do |f| %>-->
-        <!--<= f.search_field :room_area_cont, class: "form_width", placeholder: "東京" %>-->
-        <!--<= f.submit "検索", class: "btn btn-primary btn-block d-grid gap-2 form_width "%>-->
-      <!--< end %>-->
+      <p class= "notice"><%= flash.notice %></p> 
+      <h4>お部屋を探して旅に出よう！</h4>
+        <%= search_form_for @search, url: rooms_path do |f| %>
+          <%= f.search_field :room_area_cont, class: "form-control mb-4", placeholder: "東京"%>
+          <%= f.search_field :room_area_or_room_address_or_room_introduction_cont , class: "form-control mb-4", placeholder: "キーワード検索" %>
+          <%= f.submit "検索", class: "btn btn-outline-success" , class: "form-inline"%>
+        <% end %>
     </div> 
-
 </div>
-
 
 <div class="container">
   <div class="panel-area m-5">
@@ -42,3 +37,4 @@
       </div>
     </div>
   </div>
+  
