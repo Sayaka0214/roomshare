@@ -13,17 +13,7 @@ class RoomsController < ApplicationController
   # ルーム登録ボタン
   def create
     @room = Room.new(room_params)
-    if @room.save
-      flash[:notice] = "お部屋を登録しました"
-      redirect_to entry_user_path(current_user)
-    else
-      render user_path
-    end
-  end
-  
-  def create
-    @room = Room.new(room_params)
-    if @room.save
+    if @room.save(validate: false)
       flash[:notice] = "お部屋を登録しました"
       redirect_to entry_user_path(current_user)
     else
@@ -51,7 +41,8 @@ class RoomsController < ApplicationController
   
   
   def room_params
-    params.require(:room).permit(:room_name, :room_introduction, :room_price, :room_area, :room_address, :image)
+    params.require(:room).permit(:room_name, :room_introduction, :room_price, :room_area, :room_address, :image, :user_id)
   end
   
-end 
+end
+

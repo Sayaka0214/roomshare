@@ -12,6 +12,4 @@ class User < ApplicationRecord
   #アイコン用↓ 
   mount_uploader :icon, IconUploader 
   
-  
-  
 end

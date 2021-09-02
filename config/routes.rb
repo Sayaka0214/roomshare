@@ -4,14 +4,7 @@ Rails.application.routes.draw do
   # get 'reservations/index'
   get 'home/top'
   
-  # うまくいけばconfirm complete backは消す
-  resources:rooms do
-    member do
-      post 'confirm'
-      post 'complete'
-      post 'back'
-    end
-  end 
+  resources:rooms 
   
   resources:accounts
   
