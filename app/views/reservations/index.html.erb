@@ -1,0 +1,34 @@
+<div class="col-12">
+  <div class="container container-fiuld room-posts">
+  <p class= "notice"><%= flash.notice %></p>  
+  <h4><%= @user.user_name %>さんのご予約履歴</h4>
+  <br>
+    <table>
+      <thead>
+        <tr align="center">
+          <th>お部屋イメージ</th>
+          <th>お部屋名</th>
+          <th>お部屋紹介</th>
+          <th>料金</th>
+          <th>チェックイン日</th>
+          <th>チェックアウト日</th>
+          <th>予約完了日</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <% @reservations.each do |reservation| %>
+        <tr align="center">
+          <td><%= image_tag(reservation.room_image, :class => 'room-posts-image') unless reservation.room_image.blank? %></td>
+          <td><%= link_to( reservation.room_name, "/rooms/#{reservation.room_id}" ) %></td>
+          <td><%= reservation.room_introduction %></td>
+          <td><%= reservation.total %>円</td>
+          <td><%= reservation.check_in %></td>
+          <td><%= reservation.check_out %></td>
+          <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
+        </tr>  
+        <% end %>
+      </tbody>
+    <table>
+  </div>
+</div>  
+        

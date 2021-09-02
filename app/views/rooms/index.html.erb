@@ -1,0 +1,27 @@
+<div class="col-12">
+  <div class="container form_area col-4">
+  <h4>検索結果：<%= @count %>件</h4>
+  
+  
+    <div class="row">
+      <% @rooms.each do |room| %>
+        <div class="col-sm-6 col-lg-4 col-xl-3">
+          <div class="room-frame-inner">
+            <%= link_to("/rooms/#{room.id}") do %>
+              <div class="room-image-out"><%= image_tag room.image, class: 'room-posts-image' %></div>
+              <div class="room-profile">
+                <p><%= room.room_introduction %></p>
+            <% end %>    
+                <p><%= room.room_area %></p>
+                <a><%= link_to "削除", room, method: :delete %></p>
+              </div>
+            </a>
+          </div>  
+        </div>
+      <% end %>
+    </div>
+    
+  
+    　<p><%= link_to "ホームへ戻る", home_top_path %></p>
+    　<p><%= link_to "投稿する", user_path(current_user) %></p>
+</div> 

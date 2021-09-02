@@ -9,6 +9,51 @@
   </head>
 
   <body>
+    <div class="container">
+      <header>
+        <div class="row">
+          <div class="col-sm-6">
+            <a href= "/home/top"><h3>Room share</h3></a>
+            <div class="form-group">
+              <br>
+              <%= search_form_for @search, url: rooms_path do |f| %>
+              <%= f.search_field :room_area_cont, class: "form-control mb-4", placeholder: "東京"%>
+              <%= f.search_field :room_area_or_room_address_or_room_introduction_cont , class: "form-control mb-4", placeholder: "キーワード検索" %>
+              <%= f.submit "検索", class: "btn btn-outline-success" , class: "form-inline"%>
+              <% end %>
+            </div>
+          
+          </div>
+          <div class="col-sm-6" style="text-align:right">
+            
+            
+            <nav>
+              <% if user_signed_in? %>
+                ユーザー：<%= current_user.user_name %>様
+                <p>-------------------</p>
+                <%= link_to "マイページ", account_path(current_user), class:"link_color" %><br>
+                <%= link_to "お部屋を登録", user_path(current_user), class:"link_color" %><br>
+                <%= link_to "登録済みお部屋一覧", entry_user_path(current_user), class:"link_color" %><br>
+                <%= link_to "ご予約履歴", reservations_path, class:"link_color" %><br>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class:"link_color"%>
+              <% else %>
+                <%= link_to '新規会員登録', new_user_registration_path , class:"link_color" %><br>
+                <%= link_to 'ログイン', new_user_session_path , class:"link_color" %>
+              <% end %>
+            </nav>
+          </div>  
+        </div>
+      </header>
+    </div>
     <%= yield %>
   </body>
+    <div class="container">
+  <footer>
+  <% if user_signed_in? %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class:"link_color"%> 
+  <% else %>
+    <%= link_to '新規会員登録', new_user_registration_path, class:"link_color" %><br>
+    <%= link_to 'ログイン', new_user_session_path, class:"link_color" %>
+  <% end %>
+  </footer>
 </html>
